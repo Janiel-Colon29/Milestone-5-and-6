@@ -1,0 +1,76 @@
+# load csv file
+library(readr)
+
+#video games will be the variable to read the excel file of video game sales
+videogames <- read_csv("vgsales.csv")
+
+#the videogames variable will allow the excel sheet to run on the console
+videogames
+
+#alternate way to view the video games excel file
+View(videogames)
+
+videogames$Publisher
+videogames$Year
+videogames$Genre
+videogames$NA_Sales
+videogames$EU_Sales
+videogames$JP_Sales
+
+hist(videogames$NA_Sales)
+z = log(videogames$NA_Sales)
+hist(z, col = "red", xlab = "NA_Sales", main = "Histogram")
+barplot(table(videogames$NA_Sales), main = "NA_Sales", ylab = "Number of People", xlab = "Percentage of Sales")
+
+hist(videogames$EU_Sales)
+y = log(videogames$EU_Sales)
+hist(y, col = "yellow", xlab = "EU_Sales", main = "Histogram")
+barplot(table(videogames$EU_Sales), main = "EU_Sales", ylab = "Number of People", xlab = "Percentage of Sales")
+
+#The graph is left skewed so we need to take the logarithm to fix the histogram
+hist(videogames$Global_Sales)
+
+#We take the log of the previous histogram to make the new one in order to find the actual data
+w = log(videogames$Global_Sales)
+
+#This Histogram shows me how Global Sales took place while looking at its frequency
+hist(w, col = "blue", xlab = "Global_Sales", main = "Histogram")
+
+barplot(table(videogames$Global_Sales), main = "Global_Sales", ylab = "Number of People", xlab = "Percentage of Sales")
+
+hist(videogames$JP_Sales)
+v = log(videogames$JP_Sales)
+hist(v, xlab =" JP_Sales", main = "Histogram")
+barplot(table(videogames$Other_Sales), main = "Global_Sales", ylab = "Number of People", xlab = "Percentage of Sales")
+
+#After looking at the log of each Histogram I can infeere that the Histograms of the 4 different sales are close to the normal distribution."
+
+pc <- c("PC")
+xbox <- c("X360", "XB", "XOne")
+nintendo <- c("Wii", "WiiU", "N64", "GC", "NES", "3DS", "DS") 
+playstation <- c("PS", "PS2", "PS3", "PS4", "PSP", "PSV")
+
+mean(videogames$NA_Sales)
+median(videogames$NA_Sales)
+var(videogames$NA_Sales)
+sd(videogames$NA_Sales)
+
+mean(videogames$EU_Sales)
+median(videogames$EU_Sales)
+var(videogames$EU_Sales)
+sd(videogames$EU_Sales)
+
+#Comparing the mean, median, variance and standard deviation of video game sales
+#between North America and Europe, North America has a greater mean, median,
+#variance and standard deviation
+#This let's me to infer that video game sales are higher in North America by 
+#every console compared to Euopre or even that North America may have a higher
+#population of video game sales compared to Europe
+
+mean(videogames$Global_Sales)
+median(videogames$Global_Sales)
+var(videogames$Global_Sales)
+sd(videogames$Global_Sales)
+
+#I decided I wanted to check the mean, median, variance and standard deviation of
+#global video game sales to check the sales is entirely nationally
